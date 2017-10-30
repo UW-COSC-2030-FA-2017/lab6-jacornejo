@@ -1,4 +1,8 @@
 // SortedDriver.cpp
+// Jesse Cornejo
+// COSC 2030
+// 10/27/2017
+// Help from Damire Pulatov
 
 // tom bailey   1445  25 mar 2014
 // Construct sorted sequences and call functions that 
@@ -12,6 +16,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 
 using namespace std;
@@ -63,8 +68,55 @@ getWords(size_t numWords, size_t wordLength, string alphabet)
 double
 mostIsolated(vector<double> & number)
 {
-	// STUB  STUB  STUB
-	return -123.456;
+
+	// Find length of number vector
+	int length = number.size();
+
+
+	// Set up variables to store the distances and max distance
+	double distance;
+	double max = 0;
+	int max_index = 0;
+
+	for (int i = 0; i < length; i++)
+	{
+		// If first/last element, find right/left distances only
+		if (i == 0)
+		{
+			distance = abs(number[i] - number[i + 1]);
+		}
+		else if (i == length - 1)
+		{
+			distance = abs(number[i] - number[i - 1]);
+		}
+
+		// Calculate left and right distances and find the nearest neighbor
+		else
+		{
+			double left = abs(number[i] - number[i - 1]);
+			double right = abs(number[i] - number[i + 1]);
+			if (left > right)
+			{
+				distance = right;
+			}
+			else
+			{
+				distance = left;
+			}
+		}
+
+		// Compare distances and find max distance index
+		if (distance > max)
+		{
+			max = distance;
+			max_index = i;
+		}
+
+	}
+
+
+	return number[max_index];
+
 }
 
 
@@ -75,7 +127,44 @@ int
 unmatched(list<string> & A, list<string> & B)
 {
 	// STUB  STUB  STUB
-	return -1;
+	// Inititalize number of matched words to zero
+	int matched = 0;
+
+	// Iterate through two lists with iterators
+	// If found a match, break and increment number of matched
+	int index_offset = 0;
+
+	// Set up iterators
+	list<string>::iterator it_a = A.begin();
+	list<string>::iterator it_b = B.begin();
+
+
+	// Search through strings
+	while (it_a != A.end() && it_b != B.end())
+	{
+		// If words are equal, count as match
+		if (*it_a == *it_b)
+		{
+			it_a++;
+			matched++;
+		}
+		// If the word in first list is greater, move to next word in second list (there is a match)
+		else if(*it_a > *it_b)
+		{
+			it_b++;
+		}
+		// If the word in first list is less, move to next word in first list (there is no match)
+		else if (*it_a < *it_b)
+		{
+			it_a++;
+		}
+	}
+
+
+	// Number of unmatched = size - matched
+	int unmatched = A.size() - matched;
+
+	return unmatched;
 }
 
 
