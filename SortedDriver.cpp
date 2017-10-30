@@ -2,7 +2,7 @@
 // Jesse Cornejo
 // COSC 2030
 // 10/30/2017
-// Help from Damire Pulatov
+// Help from Damire Pulatov and james Hoffman
 
 // tom bailey   1445  25 mar 2014
 // Construct sorted sequences and call functions that 
@@ -73,7 +73,7 @@ mostIsolated(vector<double> & number)
 	int length = number.size();
 
 
-	// Set up variables to store the distances and max distance
+	// Set up variables to store the distances
 	double distance;
 	double max = 0;
 	int max_index = 0;
@@ -130,7 +130,7 @@ unmatched(list<string> & A, list<string> & B)
 	// Inititalize number of matched words to zero
 	int matched = 0;
 
-	// Iterate through two lists with iterators
+	// Iterate through two lists
 	// If found a match, break and increment number of matched
 	int index_offset = 0;
 
@@ -161,7 +161,6 @@ unmatched(list<string> & A, list<string> & B)
 	}
 
 
-	// Number of unmatched = size - matched
 	int unmatched = A.size() - matched;
 
 	return unmatched;
