@@ -1,7 +1,7 @@
 // SortedDriver.cpp
 // Jesse Cornejo
 // COSC 2030
-// 10/27/2017
+// 10/30/2017
 // Help from Damire Pulatov
 
 // tom bailey   1445  25 mar 2014
@@ -25,12 +25,12 @@ using namespace std;
 // post: a sorted vector of listSize random doubles from
 //         the range minNum to maxNum has been returned.
 vector<double>
-getNums(size_t listSize, double minNum, double maxNum)
+getNums(size_t listSize, double min, double max)
 {
 	vector<double> theList;
 	for (size_t i = 0; i < listSize; ++i)
 	{
-		theList.push_back(randReal(minNum, maxNum));
+		theList.push_back(randReal(min, max));
 	}
 
 	sort(begin(theList), end(theList));
